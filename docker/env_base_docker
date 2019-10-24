@@ -1,0 +1,32 @@
+FROM nvidia/cuda:10.0-devel
+
+# System packages like gcc
+RUN apt-get update && apt-get install -y curl
+RUN apt update
+RUN apt install build-essential -y
+
+#vim
+RUN apt-get install vim -y
+#git
+RUN apt-get install git -y
+#tmux
+RUN apt-get install tmux -y
+#libgl
+RUN apt-get install libgl1-mesa-dev -y
+#zip
+RUN apt-get install zip -y
+#wget
+RUN apt-get install wget -y
+
+# Install miniconda to /miniconda
+RUN curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+RUN bash Miniconda3-latest-Linux-x86_64.sh -p /miniconda3 -b
+RUN rm Miniconda3-latest-Linux-x86_64.sh
+ENV PATH=/miniconda3/bin:${PATH}
+RUN conda update -y conda
+RUN conda init
+
+WORKDIR /h4d_root
+COPY . /h4d_root
+WORKDIR /h4d_root/h4d
+

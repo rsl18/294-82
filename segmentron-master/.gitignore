@@ -1,0 +1,21 @@
+## General
+
+*.pyc
+__pycache__/
+.ropeproject/
+
+*.pkl
+*.npy
+
+*.ipynb_checkpoints
+
+.envrc
+
+## Project
+
+*.pth
+/scripts/coco
+/scripts/pycocotools
+/data
+/experiments
+/notebooks/*wild.ipynb

@@ -1,0 +1,61 @@
+Old Label,Old Parent,New Label,New Parent
+Helicopter,None,Helicopter,Aircraft
+Fixed-wing Aircraft,Fixed-wing Aircraft,Other Aircraft,Aircraft
+Cargo Plane,Fixed-wing Aircraft,Passenger/Cargo Plane,Aircraft
+Small Aircraft,Fixed-wing Aircraft,Small Plane,Aircraft
+Aircraft Hangar,Building,Aircraft Hangar,Building
+Damaged Building,Building,Damaged Building,Building
+Facility,Building,Facility,Building
+Hut/Tent,Building,Hut/Tent,Building
+Building,Building,Other Building,Building
+Shed,Building,Shed,Building
+Storage Tank,None,Storage Tank,Building
+Container Crane,Engineering Vehicle,Container Crane,Engineering Vehicle
+Excavator,Engineering Vehicle,Excavator,Engineering Vehicle
+Front loader/Bulldozer,Engineering Vehicle,Loader/Dozer/Tractor/Scraper,Engineering Vehicle
+Scraper/Tractor,Engineering Vehicle,Loader/Dozer/Tractor/Scraper,Engineering Vehicle
+Cement Mixer,Engineering Vehicle,Other Engineering Vehicle,Engineering Vehicle
+Engineering Vehicle,Engineering Vehicle,Other Engineering Vehicle,Engineering Vehicle
+Ground Grader,Engineering Vehicle,Other Engineering Vehicle,Engineering Vehicle
+Mobile Crane,Engineering Vehicle,Other Engineering Vehicle,Engineering Vehicle
+Reach Stacker,Engineering Vehicle,Other Engineering Vehicle,Engineering Vehicle
+Straddle Carrier,Engineering Vehicle,Straddle Carrier,Engineering Vehicle
+Tower crane,Engineering Vehicle,Tower Crane,Engineering Vehicle
+Barge,Maritime Vessel,Barge,Maritime Vessel
+Container Ship,Maritime Vessel,Container Ship,Maritime Vessel
+Motorboat,Maritime Vessel,Motor/Sail/Small Boat,Maritime Vessel
+Sailboat,Maritime Vessel,Motor/Sail/Small Boat,Maritime Vessel
+Oil Tanker,Maritime Vessel,Other Maritime Vessel,Maritime Vessel
+Ferry,Maritime Vessel,Other Maritime Vessel,Maritime Vessel
+Fishing Vessel,Maritime Vessel,Other Maritime Vessel,Maritime Vessel
+Maritime Vessel,Maritime Vessel,Other Maritime Vessel,Maritime Vessel
+Tugboat,Maritime Vessel,Other Maritime Vessel,Maritime Vessel
+Yacht,Maritime Vessel,Other Maritime Vessel,Maritime Vessel
+Construction Site,None,NA,NA
+Shipping Container,None,NA,NA
+Shipping container lot,None,NA,NA
+Vehicle Lot,None,NA,NA
+Helipad,None,Helipad,None
+Pylon,None,Pylon,None
+Tower,None,Tower Structure,None
+Bus,Passenger Vehicle,Bus,Passenger Vehicle
+Small Car,Passenger Vehicle,Car,Passenger Vehicle
+Passenger Vehicle,Passenger Vehicle,Other Passenger Vehicle,Passenger Vehicle
+Cargo Car,Railway Vehicle,Other Railway Vehicle,Railway Vehicle
+Flat Car,Railway Vehicle,Other Railway Vehicle,Railway Vehicle
+Tank car,Railway Vehicle,Other Railway Vehicle,Railway Vehicle
+Locomotive,Railway Vehicle,Locomotive,Railway Vehicle
+Railway Vehicle,Railway Vehicle,Other Railway Vehicle,Railway Vehicle
+Passenger Car,Railway Vehicle,Passenger Car,Railway Vehicle
+Crane Truck,Engineering Vehicle,Crane Truck,Truck
+Dump Truck,Engineering Vehicle,Dump/Haul Truck,Truck
+Haul Truck,Engineering Vehicle,Dump/Haul Truck,Truck
+Cargo Truck,Truck,Other Truck,Truck
+Pickup Truck,Truck,Other Truck,Truck
+Truck,Truck,Other Truck,Truck
+Utility Truck,Truck,Other Truck,Truck
+Truck w/Liquid,Truck,Truck w/Liquid Tank,Truck
+Trailer,Truck,Truck w/Trailer Bed,Truck
+Truck Tractor,Truck,Truck w/Trailer Bed,Truck
+Truck w/Box,Truck,Truck w/Trailer Bed,Truck
+Truck w/Flatbed,Truck,Truck w/Trailer Bed,Truck

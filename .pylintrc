@@ -1,0 +1,36 @@
+[MASTER]
+extension-pkg-whitelist=numpy,torch
+
+[TYPECHECK]
+ignored-modules=numpy,torch
+ignored-classes=numpy,torch
+generated-members=numpy.*,torch.*
+
+[BASIC]
+
+# Good variable names which should always be accepted, separated by a comma
+good-names=i,j,k,x,X,ex,Run,_
+
+[FORMAT]
+
+# Maximum number of characters on a single line.
+max-line-length=88
+
+# Regexp for a line that is allowed to be longer than the limit.
+# ignore-long-lines=^\s*(# )?<?https?://\S+>?$
+
+# Number of spaces of indent required inside a hanging  or continued line.
+# indent-after-paren=8
+
+[MESSAGES CONTROL]
+
+# Enable the message, report, category or checker with the given id(s). You can
+# either give multiple identifier separated by comma (,) or put this option
+# multiple time.
+#enable=
+
+# Disable the message, report, category or checker with the given id(s). You
+# can either give multiple identifier separated by comma (,) or put this option
+# multiple time (only on the command line, not in the configuration file where
+# it should appear only once).
+disable=C0330

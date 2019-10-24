@@ -1,0 +1,14 @@
+**/cocoapi/common
+**/cocoapi/LuaAPI
+**/cocoapi/MatlabAPI
+faster-rcnn.pytorch/data
+ssd-master/datasets
+yolov3/data/coco
+yolov3/data/xview_coco_v2
+yolov3/data/xview_coco_v2_tiny
+yolov3/weights
+**/build/**
+experiments
+datasets
+*.ipynb
+*.json

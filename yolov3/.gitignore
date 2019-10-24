@@ -1,0 +1,16 @@
+
+.DS_Store
+build
+.git
+*.egg-info
+dist
+output
+data/coco
+data/xview*.names
+data/xview*/
+config/xview*.data
+config/*xview*.cfg
+backup
+weights
+__pycache__
+checkpoints

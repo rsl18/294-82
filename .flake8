@@ -1,0 +1,6 @@
+[flake8]
+ignore = D203,E121,E123,E126,E226,E24,E704,W503,W504
+exclude = .git,__pycache__,data/coco,yolov3/data,datasets,weights,experiments,build,dist
+max-complexity = 10
+# ignore = F841
+max-line-length = 88

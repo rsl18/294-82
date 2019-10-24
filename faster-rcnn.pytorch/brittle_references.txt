@@ -1,0 +1,11 @@
+
+
+trainval.py 172,173,174- xview_coco
+run_trainval.sh 6- xview_coco
+factory.py 18, 48, 49- xview_coco
+
+xview_coco.py 71- v1/v2
+setup_datasets.sh 8- v1/v2
+coco_chip.py 182, 183- v1/v2
+trainvalsplit.py 85, 96- v1/v2
+create_remap.py 8,9- v1/v2
