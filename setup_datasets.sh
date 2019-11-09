@@ -104,15 +104,15 @@ fi
 # fi
 
 # # COCO_TO_YOLO
-if [ ! -f "yolov3/data/xview_coco_${DATA_TARGET_VERSION}/train.txt" ] || [ ! -f "yolov3/data/xview_coco_${DATA_TARGET_VERSION}_tiny/train.txt" ]; then
-	echo "Converting xview_coco_${DATA_TARGET_VERSION} to VOC format for use by yolov3."
-	mkdir -p yolov3/data/xview_coco_"$DATA_TARGET_VERSION"
+# if [ ! -f "yolov3/data/xview_coco_${DATA_TARGET_VERSION}/train.txt" ] || [ ! -f "yolov3/data/xview_coco_${DATA_TARGET_VERSION}_tiny/train.txt" ]; then
+# 	echo "Converting xview_coco_${DATA_TARGET_VERSION} to VOC format for use by yolov3."
+# 	mkdir -p yolov3/data/xview_coco_"$DATA_TARGET_VERSION"
 
-	ln -sfn "$DATA_DIR"/Xview/coco_chipped yolov3/data/xview_coco_"$DATA_TARGET_VERSION"/annotations
-	ln -sfn "$DATA_DIR"/Xview/coco_chipped yolov3/data/xview_coco_"$DATA_TARGET_VERSION"/images
-	mkdir -p yolov3/data/xview_coco_"$DATA_TARGET_VERSION"/labels
+# 	ln -sfn "$DATA_DIR"/Xview/coco_chipped yolov3/data/xview_coco_"$DATA_TARGET_VERSION"/annotations
+# 	ln -sfn "$DATA_DIR"/Xview/coco_chipped yolov3/data/xview_coco_"$DATA_TARGET_VERSION"/images
+# 	mkdir -p yolov3/data/xview_coco_"$DATA_TARGET_VERSION"/labels
 
-	python scripts/coco_to_yolo.py --dataset_name "xview_coco_${DATA_TARGET_VERSION}"
-else
-	echo "Skipping yolo dataset setup - yolov3/data/xview_coco_${DATA_TARGET_VERSION} exists already"
-fi
+# 	python scripts/coco_to_yolo.py --dataset_name "xview_coco_${DATA_TARGET_VERSION}"
+# else
+# 	echo "Skipping yolo dataset setup - yolov3/data/xview_coco_${DATA_TARGET_VERSION} exists already"
+# fi

@@ -53,13 +53,13 @@ DONT_REQ_SUCCESS=0
 # We want env and data setup to be successful.
 exec_and_check "./setup_env.sh" "Conda Environment Setup" "$LOG_FILE" "$REQ_SUCCESS"
 exec_and_check "./setup_datasets.sh" "Datasets Setup" "$LOG_FILE" "$REQ_SUCCESS"
-exec_and_check "./setup_coco.sh" "MSCOCO Setup" "$LOG_FILE" "$DONT_REQ_SUCCESS"
-exec_and_check "./setup_voc.sh" "PASAL VOC Setup" "$LOG_FILE" "$DONT_REQ_SUCCESS"
+# exec_and_check "./setup_coco.sh" "MSCOCO Setup" "$LOG_FILE" "$DONT_REQ_SUCCESS"
+# exec_and_check "./setup_voc.sh" "PASAL VOC Setup" "$LOG_FILE" "$DONT_REQ_SUCCESS"
 
 # If we get failures on the subsequent steps we can fix the issue and re-run failed ones
 # individually/manually:
-exec_and_check "./setup_rcnn.sh" "Setup Faster-RCNN" "$LOG_FILE" "$DONT_REQ_SUCCESS"
-exec_and_check "./setup_ssd.sh" "Setup SSD" "$LOG_FILE" "$DONT_REQ_SUCCESS"
+# exec_and_check "./setup_rcnn.sh" "Setup Faster-RCNN" "$LOG_FILE" "$DONT_REQ_SUCCESS"
+# exec_and_check "./setup_ssd.sh" "Setup SSD" "$LOG_FILE" "$DONT_REQ_SUCCESS"
 exec_and_check "./setup_centernet.sh" "Setup CenterNet" "$LOG_FILE" "$DONT_REQ_SUCCESS"
 # Old yolo code was giving a lot of problems. We found at least two other potential yolo/pytorch replacements.
 # The switch to a new yolo is WIP in the "new_yolo" branch. So disable the old one for now:

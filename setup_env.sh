@@ -154,13 +154,13 @@ if [[ "${platform}" == "gpu" ]]; then
     ## Enable batch_norm disable hack:
     # Changes functional.py line 1254; the last param should be "False",
     # instead of "torch.backends.cudnn.enabled" (for more details see centernet-master/INSTALL.md, part 1):
-    if [[ -f /miniconda3/envs/h4d_env/lib/python3.7/site-packages/torch/nn/functional.py ]]; then
+    if [[ -f ~/anaconda3/envs/h4d_env/lib/python3.7/site-packages/torch/nn/functional.py ]]; then
         if [[ "${TORCH_VERSION}" == "0.4" ]]; then
-            sed -i "1254s/torch\.backends\.cudnn\.enabled/False/g" /miniconda3/envs/h4d_env/lib/python3.7/site-packages/torch/nn/functional.py
+            sed -i "1254s/torch\.backends\.cudnn\.enabled/False/g" ~/anaconda3/envs/h4d_env/lib/python3.7/site-packages/torch/nn/functional.py
         fi
     else
         if [[ "${TORCH_VERSION}" == "1.1" ]]; then
-            sed -i "1697s/torch\.backends\.cudnn\.enabled/False/g" /miniconda3/envs/h4d_env/lib/python3.7/site-packages/torch/nn/functional.py
+            sed -i "1697s/torch\.backends\.cudnn\.enabled/False/g" ~/anaconda3/envs/h4d_env/lib/python3.7/site-packages/torch/nn/functional.py
         fi
     fi
 else

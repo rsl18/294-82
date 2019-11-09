@@ -33,6 +33,9 @@ echo "Using EXPERIMENTS_DIR: " "$EXPERIMENTS_DIR"
 
 
 ## Symlink data:
+if [ -d centernet-master/data ]; then rm centernet-master/data; fi
+ln -sfv "$DATA_DIR" centernet-master/data
+
 # COCO:
 # Delete and recreate the datasets symlinks:
 # if [ -d centernet-master/data/coco/annotations ]; then rm centernet-master/data/coco/annotations; fi
@@ -40,14 +43,14 @@ echo "Using EXPERIMENTS_DIR: " "$EXPERIMENTS_DIR"
 # ln -sfv "$DATA_DIR"/coco/annotations/ centernet-master/data/coco/annotations
 # ln -sfv "$DATA_DIR"/coco/images/ centernet-master/data/coco/images
 #VOC:
-if [ -d centernet-master/data/voc ]; then rm centernet-master/data/voc; fi
-ln -sfv "$DATA_DIR"/voc/voc_combined/ centernet-master/data/voc
-#XVIEW:
-if [ -d centernet-master/data/Xview ]; then rm centernet-master/data/Xview; fi
-ln -sfv "$DATA_DIR"/Xview/coco_chipped centernet-master/data/Xview
-#COCO:
-if [ -d centernet-master/data/coco ]; then rm centernet-master/data/coco; fi
-ln -sfv "$DATA_DIR"/coco centernet-master/data/coco
+# if [ -d centernet-master/data/voc ]; then rm centernet-master/data/voc; fi
+# ln -sfv "$DATA_DIR"/voc/voc_combined/ centernet-master/data/voc
+# #XVIEW:
+# if [ -d centernet-master/data/Xview ]; then rm centernet-master/data/Xview; fi
+# ln -sfv "$DATA_DIR"/Xview/coco_chipped centernet-master/data/Xview
+# #COCO:
+# if [ -d centernet-master/data/coco ]; then rm centernet-master/data/coco; fi
+# ln -sfv "$DATA_DIR"/coco centernet-master/data/coco
 
 
 ## Setup model softlinks:
