@@ -12,6 +12,7 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 import torch.utils.model_zoo as model_zoo
+from torch.utils.checkpoint import checkpoint
 
 from .DCNv2.dcn_v2 import DCN
 
@@ -378,8 +379,8 @@ class DLA(nn.Module):
         y = []
         x = self.base_layer(x)
         for i in range(6):
-            x = torch.utils.checkpoint.CheckpointFunction.apply(
-                getattr(self, "level{}".format(i)), False, x)
+            x = checkpoint(getattr(self, "level{}".format(i)),
+                x, preserve_rng_state=False)
             y.append(x)
         return y
 
