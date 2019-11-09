@@ -8,7 +8,7 @@ chmod +777 script_name.sh
 
 ## Folder structure:
 To mimic how the files are setup on the GPU server (to avoid duplicating the large datasets once for each team member), you should set up a folder structure like this:
-
+```
 ...
 <main>/
     data/Xview/vanilla
