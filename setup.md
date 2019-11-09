@@ -17,8 +17,6 @@ To mimic how the files are setup on the GPU server (to avoid duplicating the lar
 ```
 `<main>/` can be named anything you want, we never reference that folder name anywhere. The other folder names should match the above. 
 
-All further operations assume you are in `<main>/overhead/` folder.
-
 ## Download Data
 This step isn't automated because downloading Xview requires a login. To get the Xview dataset:
 
@@ -32,7 +30,7 @@ Install [Anaconda](https://www.anaconda.com/distribution/) (miniconda should als
 
 ## Run Setup:
 
-Run: 
+Run in overhead folder
 
 ```bash
 ./setup.sh
