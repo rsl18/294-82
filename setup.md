@@ -55,4 +55,9 @@ overhead/
 		exp ->symlink *overhead/experiments* or *<main>/experiments*
 	...
 ```
+## To run centernet:
 
+```
+conda activate h4d_env
+*edit and run one of the xview bash scripts in centernet-master/experiments*
+```
