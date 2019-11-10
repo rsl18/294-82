@@ -12,7 +12,6 @@ from .dataset.pascal import PascalVOC
 from .dataset.kitti import KITTI
 from .dataset.coco_hp import COCOHP
 from .dataset.xview import Xview
-from .dataset.ucb_coco import UCB_COCO
 
 
 dataset_factory = {
@@ -21,7 +20,6 @@ dataset_factory = {
   'kitti': KITTI,
   'coco_hp': COCOHP,
   'xview': Xview,
-  'ucb_coco': UCB_COCO
 }
 
 _sample_factory = {
