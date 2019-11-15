@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
@@ -380,7 +379,8 @@ class DLA(nn.Module):
         y = []
         x = self.base_layer(x)
         for i in range(6):
-            x = getattr(self, 'level{}'.format(i))(x)
+            x = checkpoint(getattr(self, "level{}".format(i)),
+                x, preserve_rng_state=False)
             y.append(x)
         return y
 
