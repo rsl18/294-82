@@ -10,7 +10,7 @@ cd ../src
 python main.py \
     ctdet \
     --exp_id xview_dla_512_test \
-    --arch checkpointdla \
+    --arch checkpointdla_34 \
     --dataset xview \
     --input_res 512 \
     --batch_size 24 \
@@ -26,7 +26,7 @@ python \
     --exp_id xview_dla_512_test \
     --dataset xview \
     --input_res 512 \
-    --arch checkpointdla \
+    --arch checkpointdla_34 \
     --resume \
     --gpus 0
 
@@ -37,7 +37,7 @@ python test.py \
     --exp_id xview_dla_512_test \
     --dataset xview \
     --input_res 512 \
-    --arch checkpointdla \
+    --arch checkpointdla_34 \
     --resume \
     --flip_test \
     --gpus 0
