@@ -13,10 +13,10 @@ python main.py \
     --arch checkpointdla \
     --dataset xview \
     --input_res 512 \
-    --batch_size 24 \
+    --batch_size 48 \
     --num_epochs 100 \
     --lr_step 45,60 \
-    --gpus 0 \
+    --gpus 1 \
     --not_cuda_benchmark
 
 #
@@ -28,7 +28,7 @@ python \
     --input_res 512 \
     --arch checkpointdla \
     --resume \
-    --gpus 0
+    --gpus 1
 
 ##
 ## flip test
@@ -40,7 +40,7 @@ python test.py \
     --arch checkpointdla \
     --resume \
     --flip_test \
-    --gpus 0
+    --gpus 1
 
 ##
 ## multi-scale
