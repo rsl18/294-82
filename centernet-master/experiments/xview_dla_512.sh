@@ -12,10 +12,10 @@ python main.py \
     --exp_id xview_dla_512_test \
     --dataset xview \
     --input_res 512 \
-    --batch_size 24 \
+    --batch_size 20 \
     --num_epochs 100 \
     --lr_step 45,60 \
-    --gpus 0 \
+    --gpus 2 \
     --not_cuda_benchmark
 
 #
@@ -26,7 +26,7 @@ python \
     --dataset xview \
     --input_res 512 \
     --resume \
-    --gpus 0
+    --gpus 2
 
 ##
 ## flip test
@@ -37,7 +37,7 @@ python test.py \
     --input_res 512 \
     --resume \
     --flip_test \
-    --gpus 0
+    --gpus 2
 
 ##
 ## multi-scale

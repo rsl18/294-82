@@ -9,11 +9,11 @@ cd ../src
 ## train
 python main.py \
     ctdet \
-    --exp_id xview_dla_512_test \
+    --exp_id checkpoint_dla \
     --arch checkpointdla_34 \
     --dataset xview \
     --input_res 512 \
-    --batch_size 48 \
+    --batch_size 32 \
     --num_epochs 100 \
     --lr_step 45,60 \
     --gpus 1 \
@@ -23,7 +23,7 @@ python main.py \
 # test
 python \
     test.py ctdet \
-    --exp_id xview_dla_512_test \
+    --exp_id checkpoint_dla \
     --dataset xview \
     --input_res 512 \
     --arch checkpointdla_34 \
@@ -34,7 +34,7 @@ python \
 ## flip test
 python test.py \
     ctdet \
-    --exp_id xview_dla_512_test \
+    --exp_id checkpoint_dla \
     --dataset xview \
     --input_res 512 \
     --arch checkpointdla_34 \
