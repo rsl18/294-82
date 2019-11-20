@@ -180,6 +180,7 @@ def do_eval(opt, epoch, model, DatasetFactory, logger):
 
 
 if __name__ == '__main__':
+  print("FIRST")
   opt = opts().parse()
   main(opt)
 
