@@ -63,10 +63,16 @@ def get_model(opt, model_path):
 
     print("Creating model...")
     # model_path = opt.load_model
-    # model = create_model(opt.arch, opt.heads, opt.head_conv)
+    model = create_model(opt.arch, opt.heads, opt.head_conv)
     checkpoint = torch.load(model_path, map_location=lambda storage, loc: storage)
     print('Loaded {}, #epochs: {}'.format(model_path, checkpoint['epoch']))
+    
+    print(f"num_params: {count_parameters(model)}")
     # model = load_model(model, opt.load_model)
+
+
+def count_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
 
 def get_model_paths():

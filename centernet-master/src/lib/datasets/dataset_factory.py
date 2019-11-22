@@ -19,7 +19,7 @@ dataset_factory = {
   'pascal': PascalVOC,
   'kitti': KITTI,
   'coco_hp': COCOHP,
-  'xview': Xview,
+  'xview': Xview
 }
 
 _sample_factory = {

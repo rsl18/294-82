@@ -90,6 +90,7 @@ class PascalVOC(data.Dataset):
     )
     if logger is not None:
         write_pascal_eval_results(results, logger)
+    return results
 
 
 def write_pascal_eval_results(results, logger):

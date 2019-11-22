@@ -18,8 +18,8 @@ from utils.debugger import Debugger
 from .base_detector import BaseDetector
 
 class CtdetDetector(BaseDetector):
-  def __init__(self, opt):
-    super(CtdetDetector, self).__init__(opt)
+  def __init__(self, opt, model = None):
+    super(CtdetDetector, self).__init__(opt, model)
   
   def process(self, images, return_time=False):
     with torch.no_grad():

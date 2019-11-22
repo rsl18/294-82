@@ -86,7 +86,7 @@ def test(opt):
   Dataset = dataset_factory[opt.dataset]
   opt = opts().update_dataset_info_and_set_heads(opt, Dataset)
   print(opt)
-  Logger(opt)
+  logger = Logger(opt)
   Detector = detector_factory[opt.task]
   
   split = 'val' if not opt.trainval else 'test'
@@ -117,7 +117,7 @@ def test(opt):
       Bar.suffix = Bar.suffix + '|{} {:.3f} '.format(t, avg_time_stats[t].avg)
     bar.next()
   bar.finish()
-  dataset.run_eval(results, opt.save_dir)
+  dataset.run_eval(results, opt.save_dir, logger)
 
 if __name__ == '__main__':
   opt = opts().parse()

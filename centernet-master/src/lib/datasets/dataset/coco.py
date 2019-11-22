@@ -1,15 +1,18 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
+# Future imports:
+from __future__ import absolute_import, division, print_function
 
-import pycocotools.coco as coco
-from pycocotools.cocoeval import COCOeval
-import numpy as np
+# Standard Library imports:
 import json
 import os
 from pathlib import Path
+from typing import Dict
 
+# 3rd Party imports:
+import numpy as np
+import pycocotools.coco as coco
+from pycocotools.cocoeval import COCOeval
 import torch.utils.data as data
+
 
 class COCO(data.Dataset):
   num_classes = 80
@@ -129,10 +132,12 @@ class COCO(data.Dataset):
     coco_eval.accumulate()
     coco_eval.summarize()
     if logger is not None:
-        write_coco_results(coco_eval.stats, logger)
+        write_coco_results(coco_eval, logger)
+    return coco_eval.stats
 
-
-def write_coco_results(eval_stats, logger):
+def write_coco_results(coco_eval, logger):
+    eval_stats = coco_eval.stats
+    per_class_maps: Dict[str, float] = coco_eval.per_class_maps
     metrics = [
           ("Average Precision  (AP)",   "0.50:0.95",     "   all",   "100")
         , ("Average Precision  (AP)",   "0.50     ",     "   all",   "100")
@@ -146,9 +151,14 @@ def write_coco_results(eval_stats, logger):
         , ("Average Recall     (AR)",   "0.50:0.95",     " small",   "100")
         , ("Average Recall     (AR)",   "0.50:0.95",     "medium",   "100")
         , ("Average Recall     (AR)",   "0.50:0.95",     " large",   "100")
+        , ("Average Precision  (AP)",   "0.25     ",     "   all",   "100")
     ]
+    logger.write("\n")
     for i, metric in enumerate(metrics):
         logger.write(
             f"{metric[0]} @[ IoU={metric[1]} | area={metric[2]} | maxDets={metric[3]} ] = {eval_stats[i]}\n"
         )
-
+    logger.write("\nPer-class mAP's:\n")
+    for k in per_class_maps.keys():
+        logger.write(f"{k}-> {per_class_maps[k]}\n")
+    logger.write("\n")

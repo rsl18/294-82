@@ -10,7 +10,6 @@ from os.path import join
 import torch
 from torch import nn
 import torch.utils.model_zoo as model_zoo
-from torch.utils.checkpoint import checkpoint
 
 import numpy as np
 
@@ -291,8 +290,7 @@ class DLA(nn.Module):
         y = []
         x = self.base_layer(x)
         for i in range(6):
-            x = checkpoint(getattr(self, "level{}".format(i)),
-                x, preserve_rng_state=False)
+            x = getattr(self, 'level{}'.format(i))(x)
             y.append(x)
         if self.return_levels:
             return y

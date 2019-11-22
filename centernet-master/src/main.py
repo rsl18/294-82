@@ -9,6 +9,10 @@ from progress.bar import Bar
 import torch
 import torch.utils.data
 
+# 1st Party imports:
+# import sys
+# for p in sys.path:
+#     print("sys path: ", p)
 import _init_paths
 from detectors.detector_factory import detector_factory
 from lib.datasets.dataset_factory import get_dataset
@@ -36,12 +40,11 @@ def main(opt):
   opt.device = torch.device('cuda' if opt.gpus[0] >= 0 else 'cpu')
   
   print('Creating model...')
-  print("ARCH: ", opt.arch)
   model = create_model(opt.arch, opt.heads, opt.head_conv)
   optimizer = torch.optim.Adam(model.parameters(), opt.lr)
   start_epoch = 0
   if opt.load_model != '':
-    print("LOAD MODEL IN MAIN: ", opt.load_model)
+    logger.write(f"loading model: {opt.load_model}, opt.resume: {opt.resume}")
     model, optimizer, start_epoch = load_model(
       model, opt.load_model, optimizer, opt.resume, opt.lr, opt.lr_step)
 
@@ -73,7 +76,7 @@ def main(opt):
   )
 
   print('Starting training...')
-  best = 1e10
+  best = float("-inf") if uses_coco_eval(opt) else 1e10
   for epoch in range(start_epoch + 1, opt.num_epochs + 1):
     mark = epoch if opt.save_all else 'last'
     log_dict_train, _ = trainer.train(epoch, train_loader)
@@ -88,7 +91,7 @@ def main(opt):
 
       with torch.no_grad():
         if uses_coco_eval(opt):
-            do_eval(opt, epoch, model, Dataset, logger)
+            best = do_eval(opt, epoch, model, Dataset, logger, best)
         else:
             log_dict_val, preds = trainer.val(epoch, val_loader)
             for k, v in log_dict_val.items():
@@ -117,12 +120,11 @@ def uses_coco_eval(opt) -> bool:
     return opt.dataset in ["ucb_coco", "xview", "coco"]
 
 
-def do_eval(opt, epoch, model, DatasetFactory, logger):
+def do_eval(opt, epoch, model, DatasetFactory, logger, best):
     # Based this code on test.py's non-prefetched code path:
     Detector = detector_factory[opt.task]
     dataset = DatasetFactory(opt, "val")
     detector = Detector(opt, model)
-    best = float("-inf")
     results = {}
     num_iters = len(dataset)
     bar = Bar('{}'.format(opt.exp_id), max=num_iters)
@@ -146,13 +148,16 @@ def do_eval(opt, epoch, model, DatasetFactory, logger):
             Bar.suffix = Bar.suffix + '|{} {:.3f} '.format(t, avg_time_stats[t].avg)
         bar.next()
     bar.finish()
-
+    metric = float("-inf")
     # Capture metric of interest, e.g., for COCO eval, something like AP50:
     eval_stats = dataset.run_eval(results, opt.save_dir, logger)
     if uses_coco_eval(opt):
-        metric = eval_stats[1]
+        ap50 = eval_stats[1]
+        ap25 = eval_stats[12]
+        metric = ap25
         # Log results to log.txt and/or tensorboard:
-        logger.scalar_summary("val_ap50", metric, epoch)
+        logger.scalar_summary("val_ap50", ap50, epoch)
+        logger.scalar_summary("val_ap25", ap25, epoch)
     else:
         # Pascal VOC:
         metric = eval_stats["Mean AP"]
@@ -165,22 +170,8 @@ def do_eval(opt, epoch, model, DatasetFactory, logger):
         save_model(
             os.path.join(opt.save_dir, "model_best.pth"), epoch, model
         )
-
-    # Original attempt:
-    # eval_stats = val_loader.dataset.run_eval(preds, opt.save_dir, logger)
-    # ##AP50
-    # metric = eval_stats[1]
-    # logger.scalar_summary("val_ap50", metric, epoch)
-    # logger.write("{} {:8f} | ".format("ap50", metric))
-    # if metric > best:
-    #     best = metric
-    #     save_model(
-    #         os.path.join(opt.save_dir, "model_best.pth"), epoch, model
-    #     )
-
+    return best
 
 if __name__ == '__main__':
-  print("FIRST")
   opt = opts().parse()
   main(opt)
-

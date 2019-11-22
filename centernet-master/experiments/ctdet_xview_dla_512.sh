@@ -9,9 +9,8 @@ cd ../src
 ## train
 python main.py \
     ctdet \
-    --exp_id xview_dlasigmafull_34 \
+    --exp_id xview_dla_512 \
     --dataset xview \
-    --arch dlasigmafull_34 \
     --input_res 512 \
     --batch_size 90 \
     --num_epochs 100 \
@@ -23,9 +22,8 @@ python main.py \
 ## test
 python test.py \
     ctdet \
-    --exp_id xview_dlasigmafull_34 \
+    --exp_id xview_dla_512 \
     --dataset xview \
-    --arch dlasigmafull_34 \
     --input_res 512 \
     --resume \
     --gpus 0,1,2,3,4
@@ -34,12 +32,14 @@ python test.py \
 ## flip test
 python test.py \
     ctdet \
-    --exp_id xview_dlasigmafull_34 \
+    --exp_id xview_dla_512 \
     --dataset xview \
-    --arch dlasigmafull_34 \
     --input_res 512 \
     --resume \
     --flip_test \
     --gpus 0,1,2,3,4
 
+##
+## multi-scale
+## TODO: Add multi-scale eval test
 cd -

@@ -14,7 +14,6 @@ from .networks.pose_dlasigma_dcn import get_pose_net as get_dlasigma_dcn
 from .networks.pose_dlasigmafull_dcn import get_pose_net as get_dlasigmafull_dcn
 from .networks.resnet_dcn import get_pose_net as get_pose_net_dcn
 from .networks.large_hourglass import get_large_hourglass_net
-from .networks.checkpoint_dla_dcn import get_pose_net as get_checkpoint_dla
 
 _model_factory = {
   'res': get_pose_net, # default Resnet with deconv
@@ -22,7 +21,6 @@ _model_factory = {
   'dla': get_dla_dcn,
   'dlasigma': get_dlasigma_dcn,
   'dlasigmafull': get_dlasigmafull_dcn,
-  'checkpointdla': get_checkpoint_dla,
   'resdcn': get_pose_net_dcn,
   'hourglass': get_large_hourglass_net,
 }
