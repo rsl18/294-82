@@ -453,10 +453,22 @@ class COCOeval:
                 mean_s = -1
             else:
                 mean_s = np.mean(s[s>-1])
+                #calculate AP(average precision) for each category
+                num_classes = len(self.params.catIds)
+                cat_dict = { c["id"]: c["name"] for c in self.cocoGt.dataset["categories"] }
+                if not hasattr(self, "per_class_maps"):
+                    self.per_class_maps = {}
+                avg_ap = 0.0
+                if ap == 1:
+                    for i,cat_id in enumerate(self.params.catIds):
+                        result_key = f"({cat_id}, {cat_dict[cat_id]})_" + iStr.format(titleStr, typeStr, iouStr, areaRng, maxDets, mean_s)
+                        class_map = np.mean(s[:,:,i,:])
+                        avg_ap += class_map
+                        self.per_class_maps[result_key] = class_map
             print(iStr.format(titleStr, typeStr, iouStr, areaRng, maxDets, mean_s))
             return mean_s
         def _summarizeDets():
-            stats = np.zeros((12,))
+            stats = np.zeros((13,))
             stats[0] = _summarize(1)
             stats[1] = _summarize(1, iouThr=.5, maxDets=self.params.maxDets[2])
             stats[2] = _summarize(1, iouThr=.75, maxDets=self.params.maxDets[2])
@@ -469,6 +481,8 @@ class COCOeval:
             stats[9] = _summarize(0, areaRng='small', maxDets=self.params.maxDets[2])
             stats[10] = _summarize(0, areaRng='medium', maxDets=self.params.maxDets[2])
             stats[11] = _summarize(0, areaRng='large', maxDets=self.params.maxDets[2])
+            # Added by us, to get mAP_IOU0.25:
+            stats[12] = _summarize(1, iouThr=.25, maxDets=self.params.maxDets[2])
             return stats
         def _summarizeKps():
             stats = np.zeros((10,))
@@ -503,7 +517,7 @@ class Params:
         self.imgIds = []
         self.catIds = []
         # np.arange causes trouble.  the data point on arange is slightly larger than the true value
-        self.iouThrs = np.linspace(.5, 0.95, np.round((0.95 - .5) / .05) + 1, endpoint=True)
+        self.iouThrs = np.linspace(.25, 0.95, np.round((0.95 - .25) / .05) + 1, endpoint=True)
         self.recThrs = np.linspace(.0, 1.00, np.round((1.00 - .0) / .01) + 1, endpoint=True)
         self.maxDets = [1, 10, 100]
         self.areaRng = [[0 ** 2, 1e5 ** 2], [0 ** 2, 32 ** 2], [32 ** 2, 96 ** 2], [96 ** 2, 1e5 ** 2]]

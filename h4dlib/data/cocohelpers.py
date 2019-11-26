@@ -250,57 +250,6 @@ def split(
     return data_train, data_test
 
 
-def split2(
-    source_map: Dict,
-    sources: List,
-    test_size: float = 0.2,
-    random_state=None,
-    sample_rate: float = 0.05,
-) -> Tuple[List[Any], List[Any]]:
-    """
-    Similar to scikit learn, creates train/test splits of the passed in data.
-    Assumes that splits need to be senstive to input source (name prefix). Checks by first 
-    mapping and splitting data sources with seed. Then samples randomly within each
-    source with the seed.
-
-    Args:
-        source_map: A dictionary of source prefixes mapped to a list of sorted (for deterministic splits) image file names.
-        source: A sorted list of source prefixes (for deterministic splits) 
-        test_size: value in [0, 1.0] indicating the size of the test split.
-        random_state: an int or RandomState object to seed the numpy randomness.
-        sample_rate: float in [0,1.0] dictating 
-
-    Returns: 2-tuple of lists; (train, test), where each item in data has been placed
-        into either the train or test split.
-    """
-
-    num_sources = len(sources)
-    num_test = int(np.ceil(test_size * num_sources))
-
-    np.random.seed(random_state)
-    test_source_idxs = set(np.random.choice(range(num_sources), num_test))
-
-    def sample_from_source(images):
-        num_images = len(images)
-        num_sample = int(np.ceil(sample_rate * num_images))
-        np.random.seed(random_state)
-        sample_image_idx = set(np.random.choice(range(num_images), num_sample))
-        data_test = list()
-        for idx, image in enumerate(images):
-            if idx in sample_image_idx:
-                data_test.append(images[idx])
-        return data_test
-
-    data_test, data_train = list(), list()
-    for idx, datum in enumerate(sources):
-        if idx in test_source_idxs:
-            data_test += sample_from_source(source_map[sources[idx]])
-        else:
-            data_train += sample_from_source(source_map[sources[idx]])
-
-    return data_train, data_test
-
-
 @dataclass
 class bbox:
     """

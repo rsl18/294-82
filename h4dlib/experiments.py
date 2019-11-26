@@ -1,26 +1,31 @@
 """
 h4dlib.experiments is a module to help manage experiments.
 """
-import json
-import os
-import shutil
-import sys
+# Standard Library imports:
 from dataclasses import asdict, dataclass, is_dataclass
 from datetime import datetime
 from getpass import getuser
+import json
+import os
 from pathlib import Path, PurePath
+import shutil
+import sys
+import time
 from typing import Any, Dict
 
+# 3rd Party imports:
 import git
 import numpy as np
 import setproctitle
 
+# h4dlib imports:
 from h4dlib.config import h4dconfig
 
 
 @dataclass
 class GitInfo:
     """Simple data class to hold some info about the git repo"""
+
     branch: str
     commit_hash: str
     is_dirty: bool
@@ -56,8 +61,23 @@ class ExperimentManager:
         Starts the experiment by logging configs argument to json file. You don't need
         to call this if you passed in configs into the ExperimentManager constructor
         """
+
+        # The retry loop is to fix bug that happens when using distributed training.
+        # Seems like multiple threads are launched and the git repo operation is run
+        # once for each GPU (e.g., 5 GPU's = 5 threads running this code)
+        # So a lame workaround for now is to sleep the thread for a bit and retry up to
+        # a certain # of times.
+        try_count = 0
+        while try_count < 50:
+            try:
+                try_count += 1
+                configs["git_info"] = self._get_repo_info()
+            except Exception as ex:
+                print("Try ", try_count, " failed.")
+                time.sleep(0.1)
+                continue
+            break
         # Save experiment config to json:
-        configs["git_info"] = self._get_repo_info()
         session_name = self.output_dir / "experiment_desc.json"
         with open(session_name, "w") as session_config:
             json.dump(
@@ -96,11 +116,12 @@ class ExperimentManager:
         """
         output_dir_name = self.get_output_dir().absolute()
         last_dir_name = output_dir_name.parts[-1]
-        new_dir_name = 'C' + last_dir_name
+        new_dir_name = "C" + last_dir_name
         path_to_parent = output_dir_name.parents[0]
         new_dir_path = PurePath(path_to_parent, new_dir_name)
         os.rename(output_dir_name, new_dir_path)
         self.output_dir = new_dir_path
+
 
 class CustomJSONEncoder(json.JSONEncoder):
     """
@@ -108,7 +129,7 @@ class CustomJSONEncoder(json.JSONEncoder):
     that aren't serializable.
     """
 
-    def default(self, o):   # pylint: disable=E0202
+    def default(self, o):  # pylint: disable=E0202
         if type(o).__module__ == np.__name__:
             if isinstance(o, np.ndarray):
                 return o.tolist()

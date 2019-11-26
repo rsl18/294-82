@@ -14,4 +14,4 @@ old_ds_annotations = folder / 'xview_coco_v0.json'
 csv_file = folder / 'xview_{}.csv'.format(h4dconfig.XVIEW_COCO_PREFIX[-2:])
 JSON_path = folder / '{}.json'.format(h4dconfig.XVIEW_COCO_PREFIX)
 
-coco = COCO(old_ds_annotations, False, csv_file, JSON_path)
+COCO(old_ds_annotations, True, csv_file, JSON_path)

@@ -18,7 +18,7 @@ def main():
     parser.add_argument(
         "--dataset_name",
         type=str,
-        default="ucb_coco_v1",
+        default="xview_coco_v2",
         help="Dataset to create stiny version of",
     )
     opt = parser.parse_args()
@@ -30,12 +30,12 @@ def main():
     # TODO: #2: maybe make the values in the dict something more structured, like
     # a class or a named tuple, and that way could make it a single dict, rather than
     # two. The values could differentiate between train/val properties.
-    ucb_coco_dir = h4dconfig.DATA_DIR / "enclave/coco"
+    xview_coco_dir = h4dconfig.DATA_DIR / "Xview/coco_chipped"
     ds_paths_train: Dict[str, Path] = {
-        "ucb_coco_v1": ucb_coco_dir / "ucb_coco_v1_train.json"
+        "xview_coco_v2": xview_coco_dir / "xview_coco_v2_train_chipped.json"
     }
     ds_paths_val: Dict[str, Path] = {
-        "ucb_coco_v1": ucb_coco_dir / "ucb_coco_v1_val.json"
+        "xview_coco_v2": xview_coco_dir / "xview_coco_v2_val_chipped.json"
     }
 
     def get_tiny_filename(big_name: str, big_filename: str):
