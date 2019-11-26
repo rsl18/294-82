@@ -31,7 +31,7 @@ class Xview(data.Dataset):
 
     def __init__(self, opt, split):
         super().__init__()
-        self.data_dir = Path(opt.data_dir) / "Xview"
+        self.data_dir = Path(opt.data_dir) / "Xview" / "coco_chipped"
         self.img_dir = self.data_dir / f"{split}"
         if split == "test":
             self.annot_path = (
