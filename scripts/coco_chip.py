@@ -231,7 +231,7 @@ def main(datatype):
             IMG_TAG,
             width=2560,
             height=2560,
-        )
+            )
         root_json["images"] = images
         root_json["annotations"] = annotations
         coco_file.write(json.dumps(root_json))
