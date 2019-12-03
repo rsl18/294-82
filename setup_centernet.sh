@@ -33,7 +33,7 @@ echo "Using EXPERIMENTS_DIR: " "$EXPERIMENTS_DIR"
 
 
 ## Symlink data:
-if [ -d centernet-master/data ]; then rm centernet-master/data; fi
+if [ -d centernet-master/data ]; then rm -rf centernet-master/data; fi
 ln -sfv "$DATA_DIR" centernet-master/data
 
 # COCO:
@@ -60,7 +60,7 @@ if [ ! -d centernet-master/models ]; then mkdir -p centernet-master/models; fi
 ln -sfvn "$EXPERIMENTS_DIR"/base_models/centernet centernet-master/models/pretrained
 
 #EXPERIMENTS:
-if [ -d centernet-master/exp ]; then rm centernet-master/exp; fi
+if [ -d centernet-master/exp ]; then rm -rf centernet-master/exp; fi
 ln -sfv "${EXPERIMENTS_DIR}"/centernet centernet-master/exp
 
 # Note, centernet's pretrained models must be manually downloaded from google drive:

@@ -229,8 +229,8 @@ def main(datatype):
             SOURCE_IMGS_DIR,
             DEST_IMGS_DIR,
             IMG_TAG,
-            width=512,
-            height=512,
+            width=2500,
+            height=2500,
         )
         root_json["images"] = images
         root_json["annotations"] = annotations
