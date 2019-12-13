@@ -41,7 +41,7 @@ def main(opt):
 
 def save(input_file: Path, root_json: Dict) -> None:
     """Saves the json to the dest_path/dest_name location."""
-    file_path = str(input_file).replace(".json", ".reindexed.json")
+    file_path = str(input_file)
     print(f"Writing output to: '{file_path}'")
     with open(file_path, "w") as coco_file:
         coco_file.write(json.dumps(root_json))
@@ -91,5 +91,17 @@ if __name__ == "__main__":
     )
     opt = parser.parse_args()
     opt.input_file = h4dconfig.DATA_DIR / "Xview/coco_chipped" / opt.input_file
+
+    main(opt)
+
+    opt.input_file = h4dconfig.DATA_DIR / "Xview/coco_chipped" / "xview_coco_v2_tiny_val.json"
+
+    main(opt)
+
+    opt.input_file = h4dconfig.DATA_DIR / "Xview/coco_chipped" / "xview_coco_v2_val.json"
+
+    main(opt)
+
+    opt.input_file = h4dconfig.DATA_DIR / "Xview/coco_chipped" / "xview_coco_v2_train.json"
 
     main(opt)

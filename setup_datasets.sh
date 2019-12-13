@@ -76,9 +76,12 @@ if [[ ! -f "$DATA_DIR"/Xview/coco_chipped/xview_coco_"$DATA_TARGET_VERSION"_val_
 	echo "Chipping images."
 	python ./scripts/coco_chip.py
 	python ./scripts/create_tiny_dataset.py --dataset_name xview_coco_"$DATA_TARGET_VERSION"
+	python ./scripts/coco_zero_index.py
 else
 	echo "Skipping chipping - coco_chipped folder exists already"
 fi
+
+
 
 # # # XVIEW-COCO SEGMENTATIONS
 # if [ ! -d $DATA_DIR/Xview/seg_coco_chipped ]; then
