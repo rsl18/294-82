@@ -34,7 +34,7 @@ echo "Using EXPERIMENTS_DIR: " "$EXPERIMENTS_DIR"
 
 ## Symlink data:
 if [ -d centernet-master/data ]; then rm -rf centernet-master/data; fi
-ln -sfv datasets centernet-master/data
+ln -sfv "../datasets" centernet-master/data
 
 # COCO:
 # Delete and recreate the datasets symlinks:
