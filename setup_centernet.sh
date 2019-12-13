@@ -18,7 +18,7 @@ if [ ! "$H4D_DATA_DIR" ] && [ ! "$H4D_EXPERIMENTS_DIR" ]; then
         DATA_DIR="/home/data"
         EXPERIMENTS_DIR="/home/experiments"
     else
-        DATA_DIR="$(abs_path "../data")"
+        DATA_DIR="$(abs_path "../datasets")"
         EXPERIMENTS_DIR="$(abs_path "../experiments")"
     fi
 else
