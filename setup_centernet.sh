@@ -18,7 +18,7 @@ if [ ! "$H4D_DATA_DIR" ] && [ ! "$H4D_EXPERIMENTS_DIR" ]; then
         DATA_DIR="/home/data"
         EXPERIMENTS_DIR="/home/experiments"
     else
-        DATA_DIR="$(abs_path "../datasets")"
+        DATA_DIR="$(abs_path "../data")"
         EXPERIMENTS_DIR="$(abs_path "../experiments")"
     fi
 else
@@ -34,7 +34,7 @@ echo "Using EXPERIMENTS_DIR: " "$EXPERIMENTS_DIR"
 
 ## Symlink data:
 if [ -d centernet-master/data ]; then rm -rf centernet-master/data; fi
-ln -sfv "$DATA_DIR" centernet-master/data
+ln -sfv datasets centernet-master/data
 
 # COCO:
 # Delete and recreate the datasets symlinks:
