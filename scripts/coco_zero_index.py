@@ -94,14 +94,14 @@ if __name__ == "__main__":
 
     main(opt)
 
-    opt.input_file = h4dconfig.DATA_DIR / "Xview/coco_chipped" / "xview_coco_v2_tiny_val.json"
+    opt.input_file = h4dconfig.DATA_DIR / "Xview/coco_chipped" / "xview_coco_v2_tiny_val_chipped.json"
 
     main(opt)
 
-    opt.input_file = h4dconfig.DATA_DIR / "Xview/coco_chipped" / "xview_coco_v2_val.json"
+    opt.input_file = h4dconfig.DATA_DIR / "Xview/coco_chipped" / "xview_coco_v2_val_chipped.json"
 
     main(opt)
 
-    opt.input_file = h4dconfig.DATA_DIR / "Xview/coco_chipped" / "xview_coco_v2_train.json"
+    opt.input_file = h4dconfig.DATA_DIR / "Xview/coco_chipped" / "xview_coco_v2_train_chipped.json"
 
     main(opt)
