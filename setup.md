@@ -21,6 +21,9 @@ To mimic how the files are setup on the GPU server (to avoid duplicating the lar
 This step isn't automated because downloading Xview requires a login. To get the Xview dataset:
 
 - Create an account on http://xviewdataset.org/, and download the "Download Training Images (tgz)" and "Download Training Labels (tgz)" links, and extract them to: <h4dmain>/data/Xview/vanilla/
+
+-IMPORTANT - the TGZ file is a lot easier to deal with. There is disclaimer on the download page about corruption errors from the zip file. You can follow that. Or you can just download the TGZ file.
+
 - Your <main>/data/Xview/vanilla/ folder should contain a xView_train.json file, and a train_images folder
 
 ## Install Anaconda
